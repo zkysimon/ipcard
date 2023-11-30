@@ -2,7 +2,7 @@
 FROM php:7.4-apache AS builder
 
 RUN apt-get update && \
-    apt-get install -y libpng-dev zlib1g-dev libjpeg-dev libfreetype6-dev
+    apt-get install -y libpng-dev zlib1g-dev libjpeg-dev libfreetype6-dev php-gd
 
 # 其他构建步骤，比如安装GD库等
 
