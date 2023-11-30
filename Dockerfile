@@ -8,6 +8,12 @@ RUN apt-get update && \
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd
 
+# 输出一些调试信息
+RUN php -m
+RUN php -r 'var_dump(gd_info());'
+
+# 其他构建步骤，比如安装扩展等
+
 # 第二阶段，用于构建最终镜像
 FROM php:7.4-apache
 
@@ -18,6 +24,10 @@ COPY --from=builder /usr/include/freetype2/ /usr/include/freetype2/
 # 安装GD库
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd
+
+# 输出一些调试信息
+RUN php -m
+RUN php -r 'var_dump(gd_info());'
 
 # 将当前目录中的所有文件复制到容器的 /var/www/html 目录下
 COPY . /var/www/html
