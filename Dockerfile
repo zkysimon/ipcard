@@ -2,7 +2,11 @@
 FROM php:7.4-apache AS builder
 
 RUN apt-get update && \
-    apt-get install -y libpng-dev zlib1g-dev libjpeg-dev libfreetype6-dev php5-gd
+    apt-get install -y libpng-dev zlib1g-dev libjpeg-dev libfreetype6-dev
+
+# 安装 GD 扩展
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install -j$(nproc) gd
 
 # 第二阶段，用于构建最终镜像
 FROM php:7.4-apache
