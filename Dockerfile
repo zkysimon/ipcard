@@ -11,9 +11,6 @@ FROM php:7.4-apache
 COPY --from=builder /usr/lib/x86_64-linux-gnu/ /usr/lib/x86_64-linux-gnu/
 COPY --from=builder /usr/include/freetype2/ /usr/include/freetype2/
 
-# 其他构建步骤，比如安装GD库等
-RUN docker-php-ext-install gd
-
 # 将当前目录中的所有文件复制到容器的 /var/www/html 目录下
 COPY . /var/www/html
 
