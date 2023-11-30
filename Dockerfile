@@ -2,9 +2,10 @@
 FROM php:7.4-apache AS builder
 
 RUN apt-get update && \
-    apt-get install -y libpng-dev zlib1g-dev libjpeg-dev libfreetype6-dev php-gd
+    apt-get install -y libpng-dev zlib1g-dev libjpeg-dev libfreetype6-dev
 
 # 其他构建步骤，比如安装GD库等
+RUN docker-php-ext-install gd
 
 # 第二阶段，用于构建最终镜像
 FROM php:7.4-apache
@@ -18,9 +19,6 @@ COPY . /var/www/html
 
 # 设置工作目录
 WORKDIR /var/www/html
-
-# 启用 GD 扩展
-RUN docker-php-ext-install gd
 
 # 暴露 Apache 默认端口
 EXPOSE 80
