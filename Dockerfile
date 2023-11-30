@@ -1,11 +1,10 @@
 # 第一阶段，用于安装构建依赖项
 FROM php:7.4-apache AS builder
 
+# 安装依赖项和GD扩展
 RUN apt-get update && \
-    apt-get install -y libpng-dev zlib1g-dev libjpeg-dev libfreetype6-dev
-
-# 安装 GD 扩展
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd
 
 # 第二阶段，用于构建最终镜像
