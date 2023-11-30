@@ -19,7 +19,8 @@ COPY . /var/www/html
 # 设置工作目录
 WORKDIR /var/www/html
 
-# 其他构建步骤，比如安装扩展、配置等
+# 启用 GD 扩展
+RUN docker-php-ext-install gd
 
 # 暴露 Apache 默认端口
 EXPOSE 80
