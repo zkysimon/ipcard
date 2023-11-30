@@ -13,8 +13,10 @@ RUN apt-get update \
         libzip-dev \
         zip \
         unzip \
-    && docker-php-ext-install -j$(nproc) iconv gd pdo pdo_mysql zip \
-    && a2enmod rewrite
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql zip \
+    && a2enmod rewrite \
+    && echo 'gd.jpeg_ignore_warning = 1' >> /usr/local/etc/php/conf.d/docker-php-ext-gd.ini
 
 # 设置 Apache 配置，启用 .htaccess 文件
 RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
