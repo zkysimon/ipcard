@@ -1,9 +1,5 @@
 <?php
 
-if (!extension_loaded('gd')) {
-    die('GD extension is not loaded. Please check your Docker configuration.');
-}
-
 class App
 {
     /*高德地图开发者key*/
