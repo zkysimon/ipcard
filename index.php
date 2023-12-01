@@ -1,7 +1,6 @@
 <?php
 
 error_reporting(E_ERROR | E_WARNING);
-ob_clean();
 
 class App
 {
