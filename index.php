@@ -1,6 +1,5 @@
 <?php
-
-error_reporting(E_ERROR | E_WARNING);
+error_reporting(0);
 
 class App
 {
