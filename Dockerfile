@@ -1,21 +1,11 @@
-# 第一阶段，用于安装构建依赖项
-FROM php:7.4-apache AS builder
+# 使用 PHP 7.4-Apache 镜像
+FROM php:7.4-apache
 
-# 安装依赖项和GD扩展
+# 安装 GD 库及其依赖项
 RUN apt-get update && \
     apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd
-
-RUN php -v
-
-# 第二阶段，用于构建最终镜像
-FROM php:7.4-apache
-
-# 从第一阶段拷贝必要的文件
-COPY --from=builder /usr/lib/x86_64-linux-gnu/ /usr/lib/x86_64-linux-gnu/
-COPY --from=builder /usr/include/freetype2/ /usr/include/freetype2/
-COPY gd.ini /usr/local/etc/php/conf.d/gd.ini
 
 # 将当前目录中的所有文件复制到容器的 /var/www/html 目录下
 COPY . /var/www/html
