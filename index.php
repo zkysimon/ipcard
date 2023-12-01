@@ -1,5 +1,9 @@
 <?php
 
+if (!extension_loaded('gd')) {
+    die('GD extension not loaded.');
+}
+
 class App
 {
     /*高德地图开发者key*/
