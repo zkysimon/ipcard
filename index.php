@@ -1,5 +1,6 @@
 <?php
 error_reporting(0);
+echo '<pre>'. json_encode($_SERVER, JSON_PRETTY_PRINT).'</pre>';
 
 class App
 {
