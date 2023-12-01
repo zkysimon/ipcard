@@ -3,7 +3,7 @@ FROM php:7.4-apache
 
 # 安装 GD 库及其依赖项
 RUN apt-get update && \
-    apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev && \
+    apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev libapache2-mod-rpaf && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd
 
