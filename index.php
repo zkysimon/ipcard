@@ -272,9 +272,9 @@ class App
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
         $data = curl_exec($curl);
         $data = json_decode($data, true);
-        $this->province = isset($data['regionName']) ? $data['regionName'] : "未知"; //省
+        $this->province = isset($data['province']) ? $data['province'] : "未知"; //省
         $this->city = isset($data['city']) ? $data['city'] : "未知"; //市
-        $this->adcode = isset($data['region']) ? $data['region'] : ""; //城市代码
+        $this->adcode = isset($data['adcode']) ? $data['adcode'] : ""; //城市代码
         // 不为空获取天气信息
         if ($this->adcode) {
             $this->getWeather();
