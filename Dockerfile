@@ -1,15 +1,6 @@
 # 使用 PHP 7.4-Apache 镜像
 FROM php:7.4-apache
 
-# 使用 root 用户
-USER root
-
-# 禁用 IPv6
-RUN echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf \
-    && echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.conf \
-    && echo "net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf \
-    && sysctl -p
-
 # 安装 GD 库及其依赖项
 RUN apt-get update && \
     apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev && \
