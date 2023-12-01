@@ -1,8 +1,7 @@
 <?php
 
-if (!extension_loaded('gd')) {
-    die('GD extension not loaded.');
-}
+error_reporting(E_ERROR | E_WARNING);
+ob_clean();
 
 class App
 {
