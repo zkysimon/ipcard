@@ -5,7 +5,7 @@ error_reporting(0);
 class App
 {
     /*高德地图开发者key*/
-    private $key = 'c6f191bab17453c6571eab1c63430595';
+    private $key = 'ade4f357af6e324844231df2f4d6a8e9';
     /*是否允许空refer，0为不允许，1为允许*/
     public $referopen = "1";
     /**路径 */
