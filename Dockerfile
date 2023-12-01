@@ -15,6 +15,7 @@ FROM php:7.4-apache
 # 从第一阶段拷贝必要的文件
 COPY --from=builder /usr/lib/x86_64-linux-gnu/ /usr/lib/x86_64-linux-gnu/
 COPY --from=builder /usr/include/freetype2/ /usr/include/freetype2/
+COPY gd.ini /usr/local/etc/php/conf.d/gd.ini
 
 # 将当前目录中的所有文件复制到容器的 /var/www/html 目录下
 COPY . /var/www/html
