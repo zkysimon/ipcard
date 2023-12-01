@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-echo '<pre>'. json_encode($_SERVER, JSON_PRETTY_PRINT).'</pre>';
+// echo '<pre>'. json_encode($_SERVER, JSON_PRETTY_PRINT).'</pre>';
 
 class App
 {
@@ -39,7 +39,7 @@ class App
         // 获取系统信息
         $this->os = $this->getOs();
         // 访问者IP
-        $this->ip = $_SERVER["REMOTE_ADDR"];
+        $this->ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
         // $this->ip = '222.216.222.168';
         // 获取访问者信息
         $this->getAddress();
