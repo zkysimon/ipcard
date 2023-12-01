@@ -1,9 +1,9 @@
 # 使用 PHP 7.4-Apache 镜像
 FROM php:7.4-apache
 
-# 安装 GD 库及其依赖项
+# 安装 GD 库及其依赖项，同时安装 libpng16-dev
 RUN apt-get update && \
-    apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev && \
+    apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev libpng16-dev && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd
 
