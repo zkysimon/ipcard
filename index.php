@@ -259,7 +259,7 @@ class App
     public function getAddress()
     {
         //获取IP及城市代码
-        $url = "http://restapi.amap.com/v3/ip?key=" . $this->key . "&ip=" . $this->ip;
+        $url = "http://ip-api.com/json/" . $this->ip;
         $UserAgent = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.04506; .NET CLR 3.5.21022; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -272,9 +272,9 @@ class App
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
         $data = curl_exec($curl);
         $data = json_decode($data, true);
-        $this->province = isset($data['province']) ? $data['province'] : "未知"; //省
+        $this->province = isset($data['regionName']) ? $data['regionName'] : "未知"; //省
         $this->city = isset($data['city']) ? $data['city'] : "未知"; //市
-        $this->adcode = isset($data['adcode']) ? $data['adcode'] : ""; //城市代码
+        $this->adcode = isset($data['region']) ? $data['region'] : ""; //城市代码
         // 不为空获取天气信息
         if ($this->adcode) {
             $this->getWeather();
