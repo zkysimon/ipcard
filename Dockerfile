@@ -17,6 +17,8 @@ COPY --from=builder /usr/include/freetype2/ /usr/include/freetype2/
 # 将当前目录中的所有文件复制到容器的 /var/www/html 目录下
 COPY . /var/www/html
 
+RUN php -m | grep gd
+
 # 设置工作目录
 WORKDIR /var/www/html
 
