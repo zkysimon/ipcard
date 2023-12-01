@@ -7,6 +7,8 @@ RUN apt-get update && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd
 
+RUN php -v
+
 # 第二阶段，用于构建最终镜像
 FROM php:7.4-apache
 
