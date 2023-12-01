@@ -39,7 +39,7 @@ class App
         // 获取系统信息
         $this->os = $this->getOs();
         // 访问者IP
-        $this->ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        $this->ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
         // $this->ip = '222.216.222.168';
         // 获取访问者信息
         $this->getAddress();
