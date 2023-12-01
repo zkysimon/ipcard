@@ -7,14 +7,13 @@ RUN apt-get update && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd
 
+RUN echo 'net.ipv6.conf.all.disable_ipv6 = 1' >> /etc/sysctl.conf && sysctl -p
+
 # 将当前目录中的所有文件复制到容器的 /var/www/html 目录下
 COPY . /var/www/html
 
 # 设置工作目录
 WORKDIR /var/www/html
-
-# 设置环境变量 DOCKER_OPTS 来禁用 IPv6
-ENV DOCKER_OPTS="--ipv6=false"
 
 # 拷贝 Apache 配置文件，确保加载 GD 扩展
 COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
