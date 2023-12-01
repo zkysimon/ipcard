@@ -7,8 +7,6 @@ RUN apt-get update && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd
 
-RUN echo 'net.ipv6.conf.all.disable_ipv6 = 1' >> /etc/sysctl.conf && sysctl -p
-
 # 将当前目录中的所有文件复制到容器的 /var/www/html 目录下
 COPY . /var/www/html
 
